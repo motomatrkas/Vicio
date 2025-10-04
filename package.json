@@ -1,0 +1,20 @@
+{
+	"name": "vicio",
+	"version": "1.0.0",
+	"description": "Proyecto Vicio",
+	"main": "index.js",
+	"scripts": {},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"@types/yaml": "^1.9.6",
+		"dotenv": "^17.2.2",
+		"winston": "^3.17.0",
+		"yaml": "^2.8.1",
+		"zod": "^4.1.11"
+	},
+	"devDependencies": {
+		"@types/node": "^24.5.2"
+	}
+}

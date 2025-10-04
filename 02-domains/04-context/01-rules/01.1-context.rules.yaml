@@ -1,0 +1,52 @@
+version: 1
+priorities:
+  - injuries
+  - climate
+  - altitude
+  - motivation
+  - market
+
+global_cap_pct: 0.30   # tope ±30% de ajuste total por contexto (aparte de weighting)
+
+scenarios:
+  escenario_local:
+    apply_if: always_home
+    multiply_weights:
+      localia: 1.3
+      xG_ataque: 1.1
+
+  escenario_necesidad_golear:
+    apply_if: must_win_high    # e.g., must_win >= 0.9
+    multiply_weights:
+      necesidad_golear: 1.5
+      xG_ataque: 1.2
+      victorias_por_margen: 1.1
+
+  escenario_suplentes_rival:
+    apply_if: rival_many_injuries  # e.g., injuriesOpponent >= 0.75
+    multiply_weights:
+      bajas_rival: 1.4
+      xG_ataque: 1.1
+      cobertura_handicap: 1.1
+
+  escenario_sin_motivacion:
+    apply_if: must_win_low    # e.g., must_win <= 0.5
+    multiply_weights:
+      necesidad_golear: 0.6
+      victorias_por_margen: 0.7
+      xG_ataque: 0.8
+
+  escenario_movimiento_en_contra:
+    apply_if: market_against  # e.g., line_movement_favor < 0
+    multiply_weights:
+      movimiento_linea: 1.4
+      delta_casas: 1.2
+      xG_ataque: 0.9
+
+dynamic:
+  enabled: true
+  k: 0.5
+  min_samples: 5
+  bounds:
+    min: 0.7
+    max: 1.5

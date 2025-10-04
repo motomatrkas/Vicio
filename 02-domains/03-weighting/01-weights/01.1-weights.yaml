@@ -1,0 +1,40 @@
+version: 1
+window_recent_matches: 5
+
+league_goal_avg:
+  default: 2.60
+
+home_advantage:
+  home_multiplier: 1.08
+  away_multiplier: 0.92
+  renormalize_sum_to_league_avg: true
+
+lambda_range:
+  min: 0.2
+  max: 3.5
+
+caps:
+  total_lambda_change_pct: 0.35   # ±35% del valor neutro (base_total/2 por equipo)
+  rival_impact_pct: 0.20          # tope de impacto del rival sobre λ
+
+imputation:
+  strategy: league_avg_then_penalize
+  penalty_factor: 0.85            # reduce la influencia si se imputó
+  min_required_features: 5
+  on_missing_policy: low_confidence  # low_confidence | exclude
+
+weights:
+  xG_ataque: 0.12
+  goles_ult5: 0.10
+  tiros_al_arco: 0.08
+  xGA_defensa: 0.10
+  goles_recibidos: 0.08
+  saves_porcentaje: 0.05
+  localia: 0.06
+  necesidad_golear: 0.06
+  bajas_rival: 0.07
+  victorias_por_margen: 0.08
+  cobertura_handicap: 0.08
+  delanteros_clave: 0.06
+  movimiento_linea: 0.04
+  delta_casas: 0.02
